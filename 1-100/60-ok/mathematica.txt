@@ -1,0 +1,5 @@
+JoinDigits[L_] := FromDigits[Join @@ (IntegerDigits /@ L)]
+twoPrimeFamilies = Select[Subsets[Prime@Range[1100], {2}], And @@ PrimeQ@(JoinDigits /@ {#, Reverse[#]}) &];
+twoPrimeGraph = Graph[First[#] <-> Last[#] & /@ twoPrimeFamilies];
+cliq = FindClique[twoPrimeGraph]
+Min[Total /@ cliq]

@@ -1,0 +1,20 @@
+Heres my (in my opinion) clever backtracking implementation for this problem. I think is more versatile than nested loops (i think that's ugly) because i just change the third parameter to get the 'n' minimals that i want. the first return True can change to return False so it prints out every set of primes and compare the sums. primo(n) is a simple isPrime() and primos(n) is erathostenes's sieve. Pretty short and understandable code and quite fast. 10000 is just arbitrary bound.
+Python
+Hide Code
+
+from primos import primo,primos
+from time import time
+primos=primos(10000)[1:]
+def f(i=0,lista=primos,numeros=[0]*5):  
+    if 0 not in numeros:
+        print(numeros,sum(numeros))
+        return True
+    for k in lista:
+            numeros[i]=k
+            posibles=[j for j in lista if (primo(int(str(k)+str(j))) and primo(int(str(j)+str(k))))]
+            if f(i+1,posibles,numeros):
+                return True
+    return False
+tick=time()
+f()
+print(time()-tick)

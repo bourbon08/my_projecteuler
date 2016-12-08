@@ -1,0 +1,19 @@
+import itertools  
+import math
+
+def isPrime(n):
+    if n <= 1:
+        return 0
+     
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return 0
+ 
+    return 1
+	
+aa=2
+ll=[2]
+for i in range(3,800):
+	if isPrime(i):ll.append(i)
+
+print(len(ll))
